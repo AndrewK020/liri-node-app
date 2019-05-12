@@ -8,6 +8,9 @@ class SpotifySearch {
         this.keys = keys
     }
     spotifySearch(searchTerm) {
+        if(searchTerm === "") {
+            searchTerm = "The Sign";
+        }
 
         function setArtists(data) {
             var artists = [];
@@ -16,9 +19,15 @@ class SpotifySearch {
             }
             return artists;
         }
+
+        function printInfo(result) {
+            console.log("\nartist: " + result.artist.join(" "));
+            console.log("song name: " + result.songName);
+            console.log("song spotify link: " + result.songLink);
+            console.log("album name: " + result.albumName + "\n");
+        }
     
         var spotify = new Spotify(this.keys.spotify);
-    
         spotify.search({ type: 'track', query: searchTerm }, function(err, data) {
             if (err) {
             return console.log('Error occurred: ' + err);
@@ -30,7 +39,7 @@ class SpotifySearch {
                 albumName: data.tracks.items[0].album.name
             }
             result.artist = setArtists(data);
-            console.log(result);
+            printInfo(result);
         });
       }
 }
