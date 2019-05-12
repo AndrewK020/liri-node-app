@@ -1,6 +1,6 @@
-var SpotifySearch = require("./spotify");
-var BandInTown = require("./bandsInTown");
-var Omdb = require("./omdb");
+var SpotifySearch = require("./javascript/spotify");
+var BandInTown = require("./javascript/bandsInTown");
+var Omdb = require("./javascript/omdb");
 
 var type = process.argv.splice(2,1).join();
 var term = process.argv.slice(2).join(" ");
